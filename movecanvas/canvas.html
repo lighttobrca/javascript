@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<link rel="stylesheet" href="./base.css">
+<script type="text/javascript">
+
+document.onkeydown = draw;
+
+
+
+function draw() {
+	var hiddenI = document.getElementById("i");
+	var hiddenJ = document.getElementById("j");
+	i = hiddenI.value;
+	j = hiddenJ.value;
+	
+  /* canvas要素のノードオブジェクト */
+  var canvas = document.getElementById('rolate');
+  /* canvas要素の存在チェックとCanvas未対応ブラウザの対処 */
+  if ( ! canvas || ! canvas.getContext ) {
+    return false;
+  }
+
+  /* 2Dコンテキスト */
+  var ctx = canvas.getContext('2d');
+  /* 四角を描く */
+  ctx.beginPath();
+  
+ 
+  ctx.moveTo(i, j);
+  
+
+  //左ボタン
+  if(event.keyCode == 37){
+	i -= 10;
+	j = j; 
+	 
+	ctx.lineTo(i, j);
+	ctx.closePath();
+	ctx.stroke();
+	}
+	//上ボタン
+  else if(event.keyCode == 38){
+ 	 i = i;
+	j -= 10;
+  ctx.lineTo(i, j);
+  ctx.closePath();
+  ctx.stroke();
+	}
+	//下ボタン
+ else if(event.keyCode == 40){
+ 	i = i;
+	j += 1;
+	ctx.lineTo(i, j);
+	ctx.closePath();
+	ctx.stroke();
+	}
+//右ボタン
+else if(event.keyCode == 39){
+
+	i += 1 ;
+	j = j;
+	ctx.lineTo(i, j);
+	ctx.closePath();
+	ctx.stroke();
+		
+	}
+
+hiddenI.value = i;
+hiddenJ.value = j;
+}
+console.log(i);
+console.log(j);
+</script>
+<body>
+	<h1>Canvas</h1>
+	<canvas id="rolate" width="600" height="600" style="background:#ffffff;"></canvas>
+	<input type="hidden" value="5" id="i">
+	<input type="hidden" value="5" id="j">
+</body>
+</html>
